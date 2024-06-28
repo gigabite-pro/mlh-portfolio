@@ -2,9 +2,9 @@
 
 <div class="about_container">
     <div class="fluid">
-        <h1 class="about_title">About Me</h1>
-        <div class="about_content">
-            <div class="about_text">
+        <h1 class="about_title" data-aos="fade-down">About Me</h1>
+        <div class="about_content" data-aos="fade-down">
+            <div class="about_text" data-aos="fade-right">
                 <p>
                     Hi! I'm Vaibhav Sharma (he/him), a third-year student
                     majoring in Statistics at The University of British
@@ -28,13 +28,15 @@
                     won the Best Use of MongoDB prize.
                 </p>
             </div>
-            <div class="about_img"></div>
+            <div class="about_img" data-aos="fade-left"></div>
         </div>
 
-        <h1 class="about_title exp_section">Work Experience</h1>
-        <div class="experiences">
+        <h1 class="about_title exp_section" data-aos="fade-down">
+            Work Experience
+        </h1>
+        <div class="experiences" data-aos="fade-down">
             {% for exp in work_ex %}
-            <div class="exp_card">
+            <div class="exp_card" data-aos="fade-down">
                 <div class="header">
                     <div
                         class="img"
@@ -52,8 +54,8 @@
             {% endfor %}
         </div>
 
-        <h1 class="about_title exp_section">My Hobbies</h1>
-        <div class="slider">
+        <h1 class="about_title exp_section" data-aos="fade-down">My Hobbies</h1>
+        <div class="slider" data-aos="fade-down">
             <div class="slide-track left" id="slide-track">
                 {% for hobbie in hobbies %}
                 <div
@@ -71,8 +73,10 @@
             </div>
         </div>
 
-        <h1 class="about_title exp_section">Locations I've Visited</h1>
-        <div id="map"></div>
+        <h1 class="about_title exp_section" data-aos="fade-down">
+            Locations I've Visited
+        </h1>
+        <div id="map" data-aos="fade-down"></div>
     </div>
 </div>
 <script>

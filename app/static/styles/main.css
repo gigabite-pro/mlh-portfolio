@@ -109,10 +109,11 @@ li a:hover:after { transform: scaleX(1); }
 .pfp {
     width: 20vw;
     height: 20vw;
+    border: 10px solid white;
     border-radius: 50%;
     background-image: url('https://github.com/gigabite-pro.png');
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
     background-position: center;
     margin-right: -13vw;
 }
@@ -330,4 +331,62 @@ i {
     margin-bottom: 5vw;
     border-radius: 10px;
     box-shadow: 0 0 30px rgba(0,0,0, 0.3);
+}
+
+.project_container {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    overflow-y: scroll;
+}
+
+.project_container .fluid {
+    width: 80vw;
+    padding-top: 10vh;
+}
+
+.project_list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.project_card {
+    width: 18vw;
+    border-radius: 10px;
+    padding: 2vw;
+    box-shadow: 0 0 20px rgba(0,0,0, 0.2);
+    margin-bottom: 1.5vw;
+    background-color: white;
+    color: black;
+    transition: box-shadow 200ms;
+}
+
+.project_card:hover {
+    box-shadow: 0 0 30px rgba(0,0,0, 0.3);
+}
+
+.project_img {
+    width: 100%;
+    height: 10vw;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+}
+
+.project_link {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1vw;
+    background-color: black;
+    color: white;
+    width: fit-content;
+    border-radius: 7px;
+    padding: 0.5vw 1.2vw;
+    transition-duration: 200ms;
+}
+
+.project_link:hover {
+    transform: translateY(-0.2vw);
 }
