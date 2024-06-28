@@ -55,6 +55,8 @@ function handleThemeToggle() {
                 scale: 1,
                 display: "block",
             });
+        pJSDom[0].pJS.particles.color.value = "#000";
+        pJSDom[0].pJS.fn.particlesRefresh();
     } else {
         gsap.to("body", { "--black": "white", duration: 0.5 });
         gsap.to("body", { "--white": "#000", duration: 0.5 });
@@ -72,5 +74,7 @@ function handleThemeToggle() {
                 scale: 1,
                 display: "block",
             });
+        pJSDom[0].pJS.particles.color.value = "#fff";
+        pJSDom[0].pJS.fn.particlesRefresh();
     }
 }

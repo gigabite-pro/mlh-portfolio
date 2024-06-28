@@ -7,12 +7,12 @@ p, h1, h2, h3, h4, h5, h6, button {
 body {
     margin: 0;
     padding: 0;
-    overflow: hidden;
     --black: #000;
     --white: #fff;
     font-family: "Manrope", sans-serif;
     background-color: var(--white);
     color: var(--black);
+    overflow-x: hidden;
 }
 
 #particles-js {
@@ -30,7 +30,7 @@ a {
 
 nav {
     width: 100vw;
-    height: 10vh;
+    height: 4vw;
     position: fixed;
     display: flex;
     justify-content: center;
@@ -43,7 +43,7 @@ nav ul {
 }
 
 nav ul li {
-    margin: 0 2vw;
+    padding: 0 2vw;
 }
 
 nav ul li a {
@@ -78,7 +78,7 @@ li a:hover:after { transform: scaleX(1); }
     width: 100vw;
     height: 100vh;
     display: flex;
-    
+    overflow: hidden;
 }
 
 .home_container .left {
@@ -97,7 +97,7 @@ li a:hover:after { transform: scaleX(1); }
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
-    margin-right: -10vw;
+    margin-right: -13vw;
 }
 
 .home_container .right {
@@ -109,7 +109,7 @@ li a:hover:after { transform: scaleX(1); }
 }
 
 .information {
-    margin-left: -10vw;
+    margin-left: -13vw;
 }
 
 .name {
@@ -159,4 +159,43 @@ i {
 
 .fa-behance:hover {
     color: #1769FF;
+}
+
+/* About Page */
+.about_container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.fluid {
+    width: 70vw;
+    padding-top: 10vh;
+}
+
+.about_title {
+    font-size: 3vw;
+    font-weight: 1000;
+    margin-bottom: 1vw;
+}
+
+.about_content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.about_text {
+    width: 60%;
+    font-size: 1.05vw;
+}
+
+.about_img {
+    width: 25vw;
+    height: 19vw;
+    background-image: url('/static/img/ubc.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
 }
