@@ -1,3 +1,9 @@
+const theme = localStorage.getItem("theme");
+let color = "#000";
+if (theme === "dark") {
+    color = "#fff";
+}
+
 particlesJS(
     "particles-js",
     {
@@ -10,7 +16,7 @@ particlesJS(
                 },
             },
             color: {
-                value: "#000",
+                value: color,
             },
             shape: {
                 type: "circle",

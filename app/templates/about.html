@@ -1,0 +1,93 @@
+{% extends "index.html" %} {% block content %}
+
+<div class="about_container">
+    <div class="fluid">
+        <h1 class="about_title" data-aos="fade-down">About Me</h1>
+        <div class="about_content" data-aos="fade-down">
+            <div class="about_text" data-aos="fade-right">
+                <p>
+                    Hi! I'm Vaibhav Sharma (he/him), a third-year student
+                    majoring in Statistics at The University of British
+                    Columbia, Vancouver.
+                </p>
+                <p>
+                    I'm a Full Stack Developer with a passion for creating
+                    beautiful and functional websites. I have experience in both
+                    front-end and back-end development, and I'm always looking
+                    to learn new technologies and improve my skills. I love
+                    working on projects that challenge me and allow me to be
+                    creative.
+                </p>
+                <p>
+                    I love creating cool projects and participating in
+                    hackathons. In my 4 year journey, I have participated in
+                    more than 20 hackathons and have won a bunch of them. I have
+                    also been a mentor at various hackathons and have helped
+                    students build their projects. Recently, I participated in
+                    Hack the North 2023, the biggest hackathon in Canada, and
+                    won the Best Use of MongoDB prize.
+                </p>
+            </div>
+            <div class="about_img" data-aos="fade-left"></div>
+        </div>
+
+        <h1 class="about_title exp_section" data-aos="fade-down">
+            Work Experience
+        </h1>
+        <div class="experiences" data-aos="fade-down">
+            {% for exp in work_ex %}
+            <div class="exp_card" data-aos="fade-down">
+                <div class="header">
+                    <div
+                        class="img"
+                        style="background-image: url({{exp.img}})"></div>
+                    <div class="basic_info">
+                        <h3 class="exp_title">{{ exp.position}}</h3>
+                        <p class="exp_company">{{ exp.company }}</p>
+                        <p class="exp_date">{{ exp.date }}</p>
+                    </div>
+                </div>
+                <div class="exp_content">
+                    <p>{{ exp.content }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <h1 class="about_title exp_section" data-aos="fade-down">My Hobbies</h1>
+        <div class="slider" data-aos="fade-down">
+            <div class="slide-track left" id="slide-track">
+                {% for hobbie in hobbies %}
+                <div
+                    class="slide-item"
+                    style="background-image: url({{hobbie.img}})">
+                    <span> <p>{{ hobbie.name }}</p> </span>
+                </div>
+                {% endfor %} {% for hobbie in hobbies %}
+                <div
+                    class="slide-item"
+                    style="background-image: url({{hobbie.img}})">
+                    <span> <p>{{ hobbie.name }}</p> </span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <h1 class="about_title exp_section" data-aos="fade-down">
+            Locations I've Visited
+        </h1>
+        <div id="map" data-aos="fade-down"></div>
+    </div>
+</div>
+<script>
+    var map = L.map("map").setView([49.2639765, -123.2561623], 16);
+
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution:
+            '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    }).addTo(map);
+
+    L.marker([49.2639765, -123.2561623]).addTo(map);
+</script>
+{% endblock %}

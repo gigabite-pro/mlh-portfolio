@@ -1,0 +1,16 @@
+[
+    {
+        "position" : "Software Developer and IT Support Analyst",
+        "company" : "UBC Department of Chemistry, Vancouver",
+        "date" : "May 2024 - Present",
+        "content" : "I work as a Software Developer and IT Support Analyst at the UBC Department of Chemistry. I am responsible for developing and maintaining web applications, databases, and other software tools used by the department. I am working on a ticketing and inventory management system to streamline the process of working in different shops in the Chemistry Department. I also provide technical support to faculty, staff, and students, and help them with any IT-related issues they may have.",
+        "img" : "./static/img/chem.png"
+    },
+    {
+        "position" : "Software Developer Freelance",
+        "company" : "Apptom Electronics Pvt. Ltd., Remote",
+        "date" : "June 2023 - September 2023",
+        "content" : "Developed frontend and implemented backend API for chat application, seamlessly integrating with Socket.io, Express.js, Moment.js, and MongoDB for efficient data management. Successfully hosted the platform on cPanel and WHM hosting service, including DNS configuration for optimal accessibility. Engineered the backend infrastructure for Google Authentication and Google Meet generation, employing the Google Cloud Platform, MongoDB, and Moment.js to ensure secure and efficient functionality.",
+        "img" : "./static/img/apptom.png"
+    }
+]

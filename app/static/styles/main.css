@@ -7,12 +7,27 @@ p, h1, h2, h3, h4, h5, h6, button {
 body {
     margin: 0;
     padding: 0;
-    overflow: hidden;
     --black: #000;
+    --rbg_black: 0, 0, 0;
     --white: #fff;
     font-family: "Manrope", sans-serif;
     background-color: var(--white);
     color: var(--black);
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 0.3vw;
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--white);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--black);
+    border-radius: 10px;
 }
 
 #particles-js {
@@ -30,11 +45,13 @@ a {
 
 nav {
     width: 100vw;
-    height: 10vh;
+    height: 4vw;
     position: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: var(--white);
+    z-index: 100;
 }
 
 nav ul {
@@ -43,7 +60,7 @@ nav ul {
 }
 
 nav ul li {
-    margin: 0 2vw;
+    padding: 0 2vw;
 }
 
 nav ul li a {
@@ -78,7 +95,7 @@ li a:hover:after { transform: scaleX(1); }
     width: 100vw;
     height: 100vh;
     display: flex;
-    
+    overflow: hidden;
 }
 
 .home_container .left {
@@ -92,12 +109,13 @@ li a:hover:after { transform: scaleX(1); }
 .pfp {
     width: 20vw;
     height: 20vw;
+    border: 10px solid white;
     border-radius: 50%;
     background-image: url('https://github.com/gigabite-pro.png');
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
     background-position: center;
-    margin-right: -10vw;
+    margin-right: -13vw;
 }
 
 .home_container .right {
@@ -109,7 +127,7 @@ li a:hover:after { transform: scaleX(1); }
 }
 
 .information {
-    margin-left: -10vw;
+    margin-left: -13vw;
 }
 
 .name {
@@ -159,4 +177,216 @@ i {
 
 .fa-behance:hover {
     color: #1769FF;
+}
+
+/* About Page */
+.about_container {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    overflow-y: scroll;
+}
+
+.fluid {
+    width: 70vw;
+    padding-top: 10vh;
+}
+
+.about_title {
+    font-size: 3vw;
+    font-weight: 1000;
+    margin-bottom: 1vw;
+}
+
+.about_content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.about_text {
+    width: 60%;
+    font-size: 1.05vw;
+}
+
+.about_img {
+    width: 25vw;
+    height: 19vw;
+    background-image: url('/static/img/ubc.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+}
+
+.exp_section {
+    margin-top: 5vw;
+}
+
+.exp_card {
+    width: 94%;
+    padding: 2vw;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0, 0.2);
+    margin-bottom: 1.5vw;
+    background-color: white;
+    color: black;
+    transition: box-shadow 200ms;
+}
+
+.exp_card:hover {
+    box-shadow: 0 0 30px rgba(0,0,0, 0.3);
+}
+
+.exp_card .header {
+    display: flex;
+    align-items: center;
+}
+
+.header .img {
+    width: 5vw;
+    height: 5vw;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+}
+
+.header .basic_info {
+    padding-left: 1vw;
+}
+
+.exp_title, .exp_company, .exp_date {
+    margin-top: 0vw;
+    margin-bottom: 0vw;
+}
+
+@keyframes scroll-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-19vw * 8)); }
+}
+
+.slider {
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+    width: 100%;
+}
+
+.slide-track {
+    display: flex;
+    width: calc(19vw * 16);
+}
+
+.slide-track.left{
+    animation: scroll-left 15s linear infinite;
+}
+
+.slide-item {
+    width: 17vw;
+    height: 12vw;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin: 1vw;
+    border-radius: 10px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+}
+
+.slide-item:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    box-shadow: 0 10px 5px -5px rgba(0, 0, 0, 0.678);
+}
+
+.slide-item > span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.5s;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    background-color: rgba(0,0,0, 0.5);
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.slide-item:hover span {
+    opacity: 1;
+}
+
+.slide-track:hover {
+    animation-play-state: paused;
+}
+
+#map {
+    height: 70vh;
+    margin-bottom: 5vw;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0,0,0, 0.3);
+}
+
+.project_container {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    overflow-y: scroll;
+}
+
+.project_container .fluid {
+    width: 80vw;
+    padding-top: 10vh;
+}
+
+.project_list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.project_card {
+    width: 18vw;
+    border-radius: 10px;
+    padding: 2vw;
+    box-shadow: 0 0 20px rgba(0,0,0, 0.2);
+    margin-bottom: 1.5vw;
+    background-color: white;
+    color: black;
+    transition: box-shadow 200ms;
+}
+
+.project_card:hover {
+    box-shadow: 0 0 30px rgba(0,0,0, 0.3);
+}
+
+.project_img {
+    width: 100%;
+    height: 10vw;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+}
+
+.project_link {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1vw;
+    background-color: black;
+    color: white;
+    width: fit-content;
+    border-radius: 7px;
+    padding: 0.5vw 1.2vw;
+    transition-duration: 200ms;
+}
+
+.project_link:hover {
+    transform: translateY(-0.2vw);
 }
