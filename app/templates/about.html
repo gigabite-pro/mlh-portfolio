@@ -51,6 +51,25 @@
             </div>
             {% endfor %}
         </div>
+
+        <h1 class="about_title exp_section">My Hobbies</h1>
+        <div class="slider">
+            <div class="slide-track left" id="slide-track">
+                {% for hobbie in hobbies %}
+                <div
+                    class="slide-item"
+                    style="background-image: url({{hobbie.img}})">
+                    <span> <p>{{ hobbie.name }}</p> </span>
+                </div>
+                {% endfor %} {% for hobbie in hobbies %}
+                <div
+                    class="slide-item"
+                    style="background-image: url({{hobbie.img}})">
+                    <span> <p>{{ hobbie.name }}</p> </span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 
     {% endblock %}

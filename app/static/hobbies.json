@@ -1,0 +1,34 @@
+[
+    {
+        "name": "Playing Basketball",
+        "img": "/static/img/basketball.jpeg"
+    },
+    {
+        "name": "Gaming",
+        "img": "/static/img/gaming.jpeg"
+    },
+    {
+        "name": "Photography",
+        "img": "/static/img/photography.jpeg"
+    },
+    {
+        "name": "Vlogging",
+        "img": "/static/img/vlogging.jpeg"
+    },
+    {
+        "name" : "Video Editing",
+        "img" : "/static/img/video_editing.jpeg"
+    },
+    {
+        "name": "Coding",
+        "img": "/static/img/coding.jpeg"
+    },
+    {
+        "name": "Travelling",
+        "img": "/static/img/travelling.jpeg"
+    },
+    {
+        "name": "Playing Guitar",
+        "img": "/static/img/guitar.jpeg"
+    }
+]

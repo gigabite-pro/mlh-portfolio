@@ -14,8 +14,11 @@ def index():
 def about():
     with open('./app/static/work_ex.json', 'r') as json_file:
         work_ex = json.load(json_file)
+    
+    with open('./app/static/hobbies.json', 'r') as json_file:
+        hobbies = json.load(json_file)
         
-    return render_template('about.html', work_ex=work_ex)
+    return render_template('about.html', work_ex=work_ex, hobbies=hobbies)
 
 if __name__ == '__main__':
     app.run(debug=True)
