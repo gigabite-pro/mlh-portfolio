@@ -9,18 +9,46 @@
         <meta property="og:title" content="Personal Portfolio" />
         <meta property="og:description" content="My Personal Portfolio" />
         <meta property="og:url" content="{{ url }}" />
-
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-            rel="stylesheet" />
-
         <link lang="sass" rel="stylesheet" href="./static/styles/main.css" />
+        <script
+            src="https://kit.fontawesome.com/410f94a1ed.js"
+            crossorigin="anonymous"></script>
+        <link
+            href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+            rel="stylesheet" />
         <link rel="icon" href="./static/img/favicon.ico" type="image/x-icon" />
-        <title>{{ title }}</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
+        <title>Vaibhav | Portfolio</title>
     </head>
 
     <body>
-        <div class="profile"></div>
+        <div id="particles-js"></div>
+        <nav data-aos="fade-down">
+            <ul>
+                <li><a href="">Home</a></li>
+                <li><a href="">About</a></li>
+                <li><a href="">Contact</a></li>
+            </ul>
+            <div class="theme">
+                <i
+                    class="fas fa-sun"
+                    id="sun"
+                    onclick="handleThemeToggle()"></i>
+                <i
+                    class="fas fa-moon"
+                    id="moon"
+                    onclick="handleThemeToggle()"></i>
+            </div>
+        </nav>
+
+        {% block content %}{% endblock %}
     </body>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <script src="./static/scripts/particles.js"></script>
+    <script src="./static/scripts/typewrite.js"></script>
+    <script src="./static/scripts/main.js"></script>
 </html>
