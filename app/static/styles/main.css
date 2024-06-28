@@ -8,11 +8,26 @@ body {
     margin: 0;
     padding: 0;
     --black: #000;
+    --rbg_black: 0, 0, 0;
     --white: #fff;
     font-family: "Manrope", sans-serif;
     background-color: var(--white);
     color: var(--black);
     overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 0.3vw;
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--white);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--black);
+    border-radius: 10px;
 }
 
 #particles-js {
@@ -35,6 +50,7 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: var(--white);
 }
 
 nav ul {
@@ -164,9 +180,9 @@ i {
 /* About Page */
 .about_container {
     width: 100vw;
-    height: 100vh;
     display: flex;
     justify-content: center;
+    overflow-y: scroll;
 }
 
 .fluid {
@@ -198,4 +214,46 @@ i {
     background-size: cover;
     background-position: center;
     border-radius: 10px;
+}
+
+.exp_section {
+    margin-top: 5vw;
+}
+
+.exp_card {
+    width: 100%;
+    padding: 2vw;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0, 0.1);
+    margin-bottom: 1.5vw;
+    background-color: white;
+    color: black;
+    transition: box-shadow 200ms;
+}
+
+.exp_card:hover {
+    box-shadow: 0 0 30px rgba(0,0,0, 0.2);
+}
+
+.exp_card .header {
+    display: flex;
+    align-items: center;
+}
+
+.header .img {
+    width: 5vw;
+    height: 5vw;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+}
+
+.header .basic_info {
+    padding-left: 1vw;
+}
+
+.exp_title, .exp_company, .exp_date {
+    margin-top: 0vw;
+    margin-bottom: 0vw;
 }

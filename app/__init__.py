@@ -1,6 +1,7 @@
 import os
 from flask import Flask, render_template, request
 from dotenv import load_dotenv
+import json
 
 load_dotenv()
 app = Flask(__name__)
@@ -11,7 +12,10 @@ def index():
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    with open('./app/static/work_ex.json', 'r') as json_file:
+        work_ex = json.load(json_file)
+        
+    return render_template('about.html', work_ex=work_ex)
 
 if __name__ == '__main__':
     app.run(debug=True)
