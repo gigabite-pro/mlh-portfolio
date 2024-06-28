@@ -1,0 +1,70 @@
+{% extends "index.html" %} {% block content %}
+<div class="home">
+    <div class="home_container">
+        <div class="left">
+            <div class="pfp"></div>
+        </div>
+        <div class="right">
+            <div class="information">
+                <div class="name information-anim">Vaibhav Sharma</div>
+                <div class="bio information-anim">
+                    <span
+                        class="typewrite information-anim"
+                        data-period="1000"
+                        data-type='["Full Stack Developer.", "Motion Designer.","Photographer.", "Basketball Player."]'></span>
+                    <span class="wrap"></span>
+                </div>
+                <div class="socials information-anim">
+                    <a
+                        href="
+                        mailto:vs301vs@gmail.com"
+                        target="_blank">
+                        <i class="fa-solid fa-envelope"></i>
+                    </a>
+                    <a
+                        href="
+                        https://www.linkedin.com/in/v-sharma03"
+                        target="_blank">
+                        <i class="fa-brands fa-linkedin"></i>
+                    </a>
+                    <a
+                        href="
+                        https://github.com/gigabite-pro"
+                        target="_blank">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a
+                        href="
+                        https://www.instagram.com/_.chintuuu._"
+                        target="_blank">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a
+                        href="
+                        https://www.behance.net/chin2sharma"
+                        target="_blank">
+                        <i class="fa-brands fa-behance"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    const timeline = gsap.timeline();
+    timeline
+        .from(".pfp", {
+            scale: 0,
+            duration: 0.5,
+            opacity: 0,
+            ease: "back",
+            delay: 0.3,
+        })
+        .from(".information-anim", {
+            opacity: 0,
+            duration: 0.5,
+            stagger: 0.2,
+            y: -50,
+        });
+</script>
+{% endblock %}
