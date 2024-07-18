@@ -1,26 +1,28 @@
 {% extends "index.html" %} {% block content %}
 
-<div class="about_container">
+<div class="project_container">
     <div class="fluid">
         <h1 class="about_title" data-aos="fade-down">Coding Projects</h1>
-        <div class="project_list">
-            {% for project in codingProjects %}
-            <div class="project_card" data-aos="fade-down">
-                <div
-                    class="project_img"
-                    style="background-image: url({{project.image}})"></div>
-                <div class="project_info">
-                    <h3 class="project_title">{{ project.name }}</h3>
-                    <p class="project_desc">{{ project.description }}</p>
-                    <a
-                        href="{{ project.link }}"
-                        target="_blank"
-                        class="project_link"
-                        >Github</a
-                    >
+        <div class="project_list_wrapper">
+            <div class="project_list">
+                {% for project in codingProjects %}
+                <div class="project_card" data-aos="fade-down">
+                    <div
+                        class="project_img"
+                        style="background-image: url({{project.image}})"></div>
+                    <div class="project_info">
+                        <h3 class="project_title">{{ project.name }}</h3>
+                        <p class="project_desc">{{ project.description }}</p>
+                        <a
+                            href="{{ project.link }}"
+                            target="_blank"
+                            class="project_link"
+                            >Github</a
+                        >
+                    </div>
                 </div>
+                {% endfor %}
             </div>
-            {% endfor %}
         </div>
     </div>
 

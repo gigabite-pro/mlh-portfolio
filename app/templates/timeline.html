@@ -1,0 +1,167 @@
+{% extends "index.html" %} {% block content %}
+
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css" />
+<div class="timeline_container">
+    <div class="fluid">
+        <h1 class="about_title" data-aos="fade-down">Timeline</h1>
+        <div class="upper_body">
+            <div class="left">
+                <form class="timeline_form" data-aos="fade-right">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input
+                            type="name"
+                            class="form-control"
+                            id="name"
+                            name="name"
+                            required
+                            placeholder="John Doe" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label"
+                            >Email Address</label
+                        >
+                        <input
+                            type="email"
+                            class="form-control"
+                            id="email"
+                            name="email"
+                            required
+                            placeholder="johndoe@gmail.com" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="content" class="form-label">Content</label>
+                        <textarea
+                            class="form-control"
+                            id="content"
+                            name="content"
+                            rows="4"
+                            required
+                            placeholder="Write your notes here..."></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <button type="button" class="btn submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+            <div class="right">
+                <div class="sketchfab-embed-wrapper" data-aos="fade-left">
+                    <iframe
+                        title="Lil Laptop"
+                        frameborder="0"
+                        allowfullscreen
+                        mozallowfullscreen="true"
+                        webkitallowfullscreen="true"
+                        allow="autoplay; fullscreen; xr-spatial-tracking"
+                        xr-spatial-tracking
+                        execution-while-out-of-viewport
+                        execution-while-not-rendered
+                        web-share
+                        width="640"
+                        height="480"
+                        src="https://sketchfab.com/models/b5077f005a6c46708e43fee48c6fef5f/embed?autospin=1&autostart=1">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
+        <h1 class="about_title all-timlines-title" data-aos="fade-down">
+            All Timelines
+        </h1>
+        <div class="all-timelines" data-aos="fade-down"></div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.30.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+<script>
+    var notyf = new Notyf({
+        duration: 2500,
+        position: {
+            x: "center",
+            y: "top",
+        },
+    });
+
+    document.querySelector(".submit").addEventListener("click", submitForm);
+
+    function submitForm(e) {
+        e.preventDefault();
+
+        const form = document.querySelector(".timeline_form");
+        const name = form.name.value;
+        const email = form.email.value;
+        const content = form.content.value;
+
+        const formData = new FormData(form);
+
+        fetch("http://localhost:5000/api/timeline_post", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                content: content,
+            }),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.success) {
+                    notyf.success("Form submitted successfully!");
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 2000);
+                } else {
+                    notyf.error("Error submitting form!");
+                }
+            });
+    }
+    function generateHash(data) {
+        return CryptoJS.SHA256(data.trim().toLowerCase()).toString();
+    }
+
+    function inflateData(data) {
+        const timelineData = document.querySelector(".all-timelines");
+        timelineData.innerHTML += `<div class="timeline" data-aos="zoom-in">
+                <div class="timeline-content">
+                    <div class="heading">
+                        <div class="timeline-pfp" style="
+                                background-image: url('https://www.gravatar.com/avatar/${generateHash(
+                                    data.email
+                                )}.png');
+                            "></div>
+                        <div class="timeline-text">
+                        ${data.name} | ${moment(
+            data.created_at,
+            "ddd, DD MMM YYYY HH:mm:ss Z"
+        ).format("DD MMM, YYYY")}
+                        </div>
+                    </div>
+                    <p>${data.content}</p>
+                </div>
+            </div>`;
+    }
+
+    function fetchTimelineData() {
+        fetch("http://localhost:5000/api/timeline_post", {
+            method: "GET",
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                // console.log(data);
+                const timelineData = document.querySelector(".all-timelines");
+                timelineData.innerHTML = "";
+                data.timeline_posts.forEach((element) => {
+                    inflateData(element);
+                });
+            });
+    }
+
+    document.onload = fetchTimelineData();
+</script>
+
+{% endblock %}

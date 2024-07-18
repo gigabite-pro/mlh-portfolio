@@ -345,14 +345,21 @@ i {
     padding-top: 10vh;
 }
 
+.project_list_wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 .project_list {
+    width: 56vw;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
 
 .project_card {
-    width: 18vw;
+    width: 25vw;
     border-radius: 10px;
     padding: 2vw;
     box-shadow: 0 0 20px rgba(0,0,0, 0.2);
@@ -373,6 +380,7 @@ i {
     background-size: cover;
     background-position: center;
     border-radius: 10px;
+    margin-bottom: 1vw;
 }
 
 .project_link {
@@ -389,4 +397,95 @@ i {
 
 .project_link:hover {
     transform: translateY(-0.2vw);
+}
+
+.timeline_container {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    overflow-y: scroll;
+}
+
+.timeline_container .upper_body {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sketchfab-embed-wrapper iframe {
+    transform: scale(0.7);
+    border-radius: 10px;
+    margin-top: -3.5vw;
+}
+
+.timeline_form {
+    width: 25vw;
+}
+
+.btn:not(:disabled):focus {
+    box-shadow: none !important;
+    background-color: black;
+    color: white;
+}
+
+.submit {
+    background-color: black;
+    border: black;
+    color: white;
+    transition: transform 200ms;
+}
+
+.submit:hover {
+    background-color: black;
+    color: white;
+    transform: translateY(-0.2vw);
+}
+
+.all-timelines {
+    max-width: 90vw;
+    margin-left: -2vw;
+    column-gap: 2vw;
+    column-count: 3;
+}
+
+.all-timlines-title {
+    margin-top: 4vw;
+}
+
+.timeline {
+    background-color: white;
+    display: inline-block;
+    margin-bottom: 1vw;
+    width: 24vw;
+    box-shadow: 0 0 20px rgba(0,0,0, 0.2);
+    border-radius: 10px;
+    padding: 1vw;
+    height: fit-content;
+}
+
+.timeline-content .heading {
+    height: 3vw;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    margin-bottom: 1vw;
+    color: black;
+}
+
+.timeline-pfp {
+    width: 2.5vw;
+    height: 2.5vw;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-radius: 50%;
+}
+
+.timeline-text {
+    padding-left: 0.5vw;
+    font-size: 1vw;
+    font-weight: 600;
+}
+
+.timeline-content p {
+    color: black;
 }

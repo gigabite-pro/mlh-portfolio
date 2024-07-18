@@ -1,5 +1,6 @@
 import os
 from flask import Flask, render_template, request
+from flask_cors import CORS, cross_origin
 from dotenv import load_dotenv
 import json
 from peewee import *
@@ -8,6 +9,9 @@ from playhouse.shortcuts import model_to_dict
 
 load_dotenv()
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+
 
 mydb = MySQLDatabase(os.getenv('MYSQL_DATABASE'), user=os.getenv('MYSQL_USER'), password=os.getenv('MYSQL_PASSWORD'), host=os.getenv('MYSQL_HOST'), port=3306)
 
@@ -43,18 +47,29 @@ def projects():
         
     return render_template('projects.html', codingProjects=codingProjects)
 
+@app.route('/timeline')
+def timeline():
+    return render_template('timeline.html')
+
 @app.route('/api/timeline_post', methods=['POST'])
+@cross_origin()
 def post_time_line_posts():
-    name = request.form['name']
-    email = request.form['email']
-    content = request.form['content']
+    data = request.get_json()
+    name = data.get('name')
+    email = data.get('email')
+    content = data.get('content')
     timeline_post = TimelinePost.create(name=name, email=email, content=content)
     
-    return model_to_dict(timeline_post)
+    return {
+        'success': True,
+        'timeline_post': model_to_dict(timeline_post)
+    }
 
 @app.route('/api/timeline_post', methods=['GET'])
+@cross_origin()
 def get_time_line_posts():
     return {
+        'success': True,
         'timeline_posts': [model_to_dict(p) for p in TimelinePost.select().order_by(TimelinePost.created_at.desc())]
     }
 
