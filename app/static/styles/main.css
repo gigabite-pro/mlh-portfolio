@@ -445,6 +445,7 @@ i {
     margin-left: -2vw;
     column-gap: 2vw;
     column-count: 3;
+    padding-bottom: 5vw;
 }
 
 .all-timlines-title {
