@@ -1,4 +1,5 @@
 import os
+import re
 from flask import Flask, render_template, request
 from flask_cors import CORS, cross_origin
 from dotenv import load_dotenv
@@ -12,8 +13,11 @@ app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-
-mydb = MySQLDatabase(os.getenv('MYSQL_DATABASE'), user=os.getenv('MYSQL_USER'), password=os.getenv('MYSQL_PASSWORD'), host=os.getenv('MYSQL_HOST'), port=3306)
+if os.getenv('TESTING') == 'true':
+    print("Running in test mode")
+    mydb = SqliteDatabase('file:memory:?mode=memory&cache=shared', uri=True)
+else:
+    mydb = MySQLDatabase(os.getenv('MYSQL_DATABASE'), user=os.getenv('MYSQL_USER'), password=os.getenv('MYSQL_PASSWORD'), host=os.getenv('MYSQL_HOST'), port=3306)
 
 class TimelinePost(Model):
     name = CharField()
@@ -58,6 +62,15 @@ def post_time_line_posts():
     name = data.get('name')
     email = data.get('email')
     content = data.get('content')
+
+    # Validate input fields
+    if not name:
+        return "Invalid name", 400
+    if not email or not re.match(r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$", email):
+        return "Invalid email", 400
+    if not content:
+        return "Invalid content", 400
+    
     timeline_post = TimelinePost.create(name=name, email=email, content=content)
     
     return {
