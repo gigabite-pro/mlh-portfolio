@@ -37,11 +37,11 @@ jobs:
             - name: Deploy site
               run: ssh my-vps '~/redeploy-site.sh'
 
-            - name: Print Container Status
-              run: ssh my-vps 'docker-compose ps'
-
             - name: Send Discord Notification
               run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚀 Deployment Successful"
+
+            - name: Print Container Status
+              run: ssh my-vps 'docker ps'
 
     failure-notification:
         name: "Notify Failure"
