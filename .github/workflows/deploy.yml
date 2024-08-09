@@ -5,46 +5,17 @@ on:
         branches:
             - main
     workflow_dispatch:
+    workflow_run:
+        workflows: ["Run Tests"]
+        types:
+            - completed
 
 jobs:
-    trigger-tests:
-        name: "Trigger the Test Workflow"
-        runs-on: ubuntu-latest
-        steps:
-            - name: Trigger Test Workflow
-              id: trigger_tests
-              uses: benc-uk/workflow-dispatch@v1
-              with:
-                  workflow: "test.yml"
-                  token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-                  ref: "main"
-            - name: Wait for Test Workflow to Complete
-              uses: actions/github-script@v6
-              id: check_run
-              with:
-                  script: |
-                      const { data: runs } = await github.rest.actions.listWorkflowRuns({
-                        owner: context.repo.owner,
-                        repo: context.repo.repo,
-                        workflow_id: context.payload.workflow_run.workflow_id,
-                        branch: 'main',
-                        status: 'completed'
-                      });
-                      const run = runs.workflow_runs.find(run => run.conclusion === 'success');
-                      if (!run) {
-                        throw new Error("Test workflow failed or not completed.");
-                      }
-                      return run.id;
-                  github-token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-
-            - name: Continue if Tests Passed
-              if: ${{ steps.check_run.outputs.result == 'success' }}
-              run: echo "Tests passed, continuing with deployment."
     deploy:
         name: "Deploy to VPS"
         runs-on: ubuntu-latest
         needs: trigger-tests
-        if: ${{ needs.trigger-tests.outputs.check_run.result == 'success' }}
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
         steps:
             - name: Configure SSH
               run: |
