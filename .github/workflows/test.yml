@@ -1,51 +1,51 @@
-name: Run Tests
+# name: Run Tests
 
-on:
-    push:
-        branches:
-            - main
-    pull_request:
-        branches:
-            - main
+# on:
+#     push:
+#         branches:
+#             - main
+#     pull_request:
+#         branches:
+#             - main
 
-jobs:
-    test:
-        runs-on: ubuntu-latest
-        name: run-tests
-        env:
-            TESTING: true
-        steps:
-            - name: Checkout Repository
-              uses: actions/checkout@v2
+# jobs:
+#     test:
+#         runs-on: ubuntu-latest
+#         name: run-tests
+#         env:
+#             TESTING: true
+#         steps:
+#             - name: Checkout Repository
+#               uses: actions/checkout@v2
 
-            - name: Set up Python
-              uses: actions/setup-python@v4
-              with:
-                  python-version: "3.12.4"
+#             - name: Set up Python
+#               uses: actions/setup-python@v4
+#               with:
+#                   python-version: "3.12.4"
 
-            - name: Setup Python Virtual Environment
-              run: python -m venv python3-virtualenv
+#             - name: Setup Python Virtual Environment
+#               run: python -m venv python3-virtualenv
 
-            - name: Install Dependencies
-              run: python3-virtualenv/bin/pip install -r requirements.txt
+#             - name: Install Dependencies
+#               run: python3-virtualenv/bin/pip install -r requirements.txt
 
-            - name: Run Tests
-              run: ./run_test.sh
+#             - name: Run Tests
+#               run: ./run_test.sh
 
-    deploy-trigger:
-        runs-on: ubuntu-latest
-        needs: test
-        steps:
-            - name: Trigger Deploy Workflow
-              uses: actions/github-script@v6
-              with:
-                  script: |
-                      github.rest.actions.createWorkflowDispatch({
-                        owner: context.repo.owner,
-                        repo: context.repo.repo,
-                        workflow_id: "deploy.yml",
-                        ref: context.ref,
-                        inputs: {
-                          tests_failed: ${{ job.status == 'failure' }}
-                        }
-                      })
+#     deploy-trigger:
+#         runs-on: ubuntu-latest
+#         needs: test
+#         steps:
+#             - name: Trigger Deploy Workflow
+#               uses: actions/github-script@v6
+#               with:
+#                   script: |
+#                       github.rest.actions.createWorkflowDispatch({
+#                         owner: context.repo.owner,
+#                         repo: context.repo.repo,
+#                         workflow_id: "deploy.yml",
+#                         ref: context.ref,
+#                         inputs: {
+#                           tests_failed: ${{ job.status == 'failure' }}
+#                         }
+#                       })

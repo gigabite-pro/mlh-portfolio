@@ -1,19 +1,41 @@
 name: Deploy
 
 on:
-    workflow_dispatch:
-    workflow_run:
-        workflows: ["Run Tests"]
-        branch:
+    push:
+        branches:
             - main
-        types:
-            - completed
+    pull_request:
+        branches:
+            - main
 
 jobs:
+    test:
+        runs-on: ubuntu-latest
+        name: run-tests
+        env:
+            TESTING: true
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v2
+
+            - name: Set up Python
+              uses: actions/setup-python@v4
+              with:
+                  python-version: "3.12.4"
+
+            - name: Setup Python Virtual Environment
+              run: python -m venv python3-virtualenv
+
+            - name: Install Dependencies
+              run: python3-virtualenv/bin/pip install -r requirements.txt
+
+            - name: Run Tests
+              run: ./run_test.sh
+
     deploy:
         name: "Deploy to VPS"
         runs-on: ubuntu-latest
-        if: ${{ github.event.inputs.tests_failed == 'false' }}
+        needs: test
         steps:
             - name: Configure SSH
               run: |
@@ -44,8 +66,8 @@ jobs:
     failure-notification:
         name: "Notify Failure"
         runs-on: ubuntu-latest
-        needs: deploy
-        if: ${{ needs.deploy.result == 'failure' || github.event.inputs.tests_failed == 'true' }}
+        needs: [test, deploy]
+        if: ${{ needs.test.result == 'failure' || needs.deploy.result == 'failure' }}
         steps:
             - name: Send Discord Notification on Failure
               run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚨 Deployment Failed"
