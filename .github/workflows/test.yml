@@ -31,3 +31,20 @@ jobs:
 
             - name: Run Tests
               run: ./run_test.sh
+    deploy-trigger:
+    runs-on: ubuntu-latest
+    needs: run-tests
+    steps:
+        - name: Trigger Deploy Workflow
+          uses: actions/github-script@v6
+          with:
+              script: |
+                  github.rest.actions.createWorkflowDispatch({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    workflow_id: "deploy.yml",
+                    ref: context.ref,
+                    inputs: {
+                      tests_failed: ${{ job.status == 'failure' }}
+                    }
+                  })
