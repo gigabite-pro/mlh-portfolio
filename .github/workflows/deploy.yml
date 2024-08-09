@@ -67,7 +67,7 @@ jobs:
         name: "Notify Failure"
         runs-on: ubuntu-latest
         needs: [test, deploy]
-        if: ${{ needs.test.result == 'failure' || needs.deploy.result == 'failure' }}
+        if: failure()
         steps:
             - name: Send Discord Notification on Failure
               run: curl -s -X POST "${{ secrets.DISCORD_WEBHOOK }}" -d "content=🚨 Deployment Failed"
