@@ -14,7 +14,6 @@ jobs:
     deploy:
         name: "Deploy to VPS"
         runs-on: ubuntu-latest
-        needs: trigger-tests
         if: ${{ github.event.workflow_run.conclusion == 'success' }}
         steps:
             - name: Configure SSH
