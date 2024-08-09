@@ -16,7 +16,7 @@ jobs:
               uses: benc-uk/workflow-dispatch@v1
               with:
                   workflow: "test.yml"
-                  token: ${{ secrets.GITHUB_TOKEN }}
+                  token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
                   ref: "main"
             - name: Wait for Test Workflow to Complete
               uses: actions/github-script@v6
