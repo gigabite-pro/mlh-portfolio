@@ -16,6 +16,10 @@ jobs:
         runs-on: ubuntu-latest
         if: ${{ github.event.workflow_run.conclusion == 'success' }}
         steps:
+            - name: Check Test Conclusion
+              if: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.conclusion != 'success' }}
+              run: echo "Skipping deployment because tests failed." && exit 1
+
             - name: Configure SSH
               run: |
                   mkdir -p ~/.ssh
